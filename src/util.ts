@@ -63,10 +63,10 @@ export const samePos = (p1: cg.Pos, p2: cg.Pos): boolean => p1[0] === p2[0] && p
 
 export const posToTranslate =
   (bounds: DOMRectReadOnly): ((pos: cg.Pos, asWhite: boolean) => cg.NumberPair) =>
-    (pos, asWhite) => [
-      ((asWhite ? pos[0] : 8 - pos[0]) * bounds.width) / 9,
-      ((asWhite ? 9 - pos[1] : pos[1]) * bounds.height) / 10,
-    ];
+  (pos, asWhite) => [
+    ((asWhite ? pos[0] : 8 - pos[0]) * bounds.width) / 9,
+    ((asWhite ? 9 - pos[1] : pos[1]) * bounds.height) / 10,
+  ];
 
 export const translate = (el: HTMLElement, pos: cg.NumberPair): void => {
   el.style.transform = `translate(${pos[0]}px,${pos[1]}px)`;

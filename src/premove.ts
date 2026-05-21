@@ -15,20 +15,23 @@ const bishop: Mobility = (ctx: MobilityContext) => util.bishopDir(...ctx.orig.po
 
 const rook: Mobility = (ctx: MobilityContext) => util.rookDir(...ctx.orig.pos, ...ctx.dest.pos);
 
-const cannon: Mobility = (ctx: MobilityContext) =>
-  util.rookDir(...ctx.orig.pos, ...ctx.dest.pos);
+const cannon: Mobility = (ctx: MobilityContext) => util.rookDir(...ctx.orig.pos, ...ctx.dest.pos);
 
-const advisor: Mobility = (ctx: MobilityContext) =>
-  util.bishopDir(...ctx.orig.pos, ...ctx.dest.pos);
+const advisor: Mobility = (ctx: MobilityContext) => util.bishopDir(...ctx.orig.pos, ...ctx.dest.pos);
 
-const elephant: Mobility = (ctx: MobilityContext) =>
-  util.bishopDir(...ctx.orig.pos, ...ctx.dest.pos);
+const elephant: Mobility = (ctx: MobilityContext) => util.bishopDir(...ctx.orig.pos, ...ctx.dest.pos);
 
-const king: Mobility = (ctx: MobilityContext) =>
-  util.kingDirNonCastling(...ctx.orig.pos, ...ctx.dest.pos);
+const king: Mobility = (ctx: MobilityContext) => util.kingDirNonCastling(...ctx.orig.pos, ...ctx.dest.pos);
 
 const mobilityByRole: Record<string, Mobility> = {
-  pawn, knight, bishop, rook, cannon, advisor, elephant, king,
+  pawn,
+  knight,
+  bishop,
+  rook,
+  cannon,
+  advisor,
+  elephant,
+  king,
 };
 
 export function premove(state: HeadlessState, key: cg.Key): cg.Key[] {

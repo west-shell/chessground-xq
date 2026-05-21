@@ -379,11 +379,11 @@ const makeCustomBrush = (base: DrawBrush, modifiers: DrawModifiers | undefined):
   !modifiers
     ? base
     : {
-      color: base.color,
-      opacity: Math.round(base.opacity * 10) / 10,
-      lineWidth: Math.round(modifiers.lineWidth || base.lineWidth),
-      key: [base.key, modifiers.lineWidth].filter(Boolean).join(''),
-    };
+        color: base.color,
+        opacity: Math.round(base.opacity * 10) / 10,
+        lineWidth: Math.round(modifiers.lineWidth || base.lineWidth),
+        key: [base.key, modifiers.lineWidth].filter(Boolean).join(''),
+      };
 
 const circleWidth = (): [number, number] => [3 / 64, 4 / 64];
 
