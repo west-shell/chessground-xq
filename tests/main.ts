@@ -1,23 +1,14 @@
-import { Chessground as XQGround, DEFAULT_FEN } from '../src-new/';
 import { Chessground } from '../src/chessground';
+import { initial } from "../src/fen"
 import type { Key } from '../src/types';
 import { allKeys } from '../src/util';
 
 // ---- DOM 引用 ----
-const xqContainer = document.getElementById('board-container-xq')!;
-const chessContainer = document.getElementById('board-container-chess')!;
+const chessContainer = document.getElementById('board-container')!;
 const fenOutput = document.getElementById('fen-output') as HTMLTextAreaElement;
 const statusEl = document.getElementById('status')!;
 const turnEl = document.getElementById('turn-indicator')!;
 
-// ---- 创建中国象棋棋盘（chessground-xq）----
-const xqGround = XQGround(xqContainer, {
-  fen: DEFAULT_FEN,
-  orientation: 'red',
-  movable: { color: 'both', showDests: true },
-  animation: { enabled: true, duration: 200 },
-  boardImage: '/board_bg.jpg',
-});
 
 // ---- 创建国际象棋棋盘（@lichess-org/chessground）----
 const chessGround = Chessground(chessContainer, {
@@ -43,6 +34,7 @@ function updateInfo() {
   const s = chessGround.state;
   fenOutput.value = chessGround.getFen();
   const turnText = s.turnColor === 'white' ? '🔴 红方' : '⚫ 黑方';
+  console.log('当前走棋方:', s.turnColor);
   turnEl.textContent = `走棋方: ${turnText}`;
   statusEl.textContent = `棋子: ${s.pieces.size} | 最后一步: ${s.lastMove ? s.lastMove.join('→') : '无'}`;
 }
@@ -79,7 +71,7 @@ function flipBoard() {
 
 // ---- 重置 ----
 function resetBoard() {
-  chessGround.set({ fen: DEFAULT_FEN });
+  chessGround.set({ fen: initial });
   updateInfo();
 }
 
