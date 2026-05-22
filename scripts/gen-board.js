@@ -17,7 +17,7 @@ const W = (COLS - 1) * CELL + PAD * 2; // 450
 const H = (ROWS - 1) * CELL + PAD * 2; // 500
 
 // 实际颜色值（代替 CSS 变量）
-const BG = '#f0d9a0';
+const BG = '#d0b899b4';
 const LINE = '#555';
 const MARGIN = CELL * 0.1;
 
