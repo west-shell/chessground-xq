@@ -158,6 +158,10 @@ const css = `/**
 
 .cg-wrap {
   background-image: url('data:image/svg+xml;base64,${b64}');
+  background-size: 100% 100%; 
+  background-repeat: no-repeat;
+  background-position: center;
+  aspect-ratio: 9 / 10; 
 }
 
 /** Interactive board square colors */
