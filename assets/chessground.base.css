@@ -10,6 +10,10 @@ cg-container {
   height: 100%;
   display: block;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 cg-board {
@@ -34,7 +38,7 @@ cg-board square {
   position: absolute;
   top: 0;
   left: 0;
-  width: 11.1111%;
+  width: 11.11111111111111%;
   height: 10%;
   pointer-events: none;
 }
@@ -51,7 +55,7 @@ cg-board square.last-move {
   position: absolute;
   top: 0;
   left: 0;
-  width: 11.1111%;
+  width: 11.1111111111%;
   height: 10%;
   background-size: cover;
   z-index: 2;
@@ -192,7 +196,7 @@ piece.fading {
   text-align: right;
   flex-flow: column-reverse;
   height: 100%;
-  width: 11.1111%;
+  width: 11.1111111111%;
 }
 
 .cg-wrap coords.squares.black {
