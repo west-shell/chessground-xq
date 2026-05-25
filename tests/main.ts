@@ -12,7 +12,7 @@ const turnEl = document.getElementById('turn-indicator')!;
 // ---- 创建国际象棋棋盘（@lichess-org/chessground）----
 const chessGround = Chessground(chessContainer, {
   orientation: 'white',
-  coordinates: false,
+  // coordinates: false,
   movable: { color: 'both', showDests: true },
   animation: { enabled: true, duration: 200 },
 });
