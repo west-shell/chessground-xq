@@ -71,24 +71,21 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
         ),
       );
     } else {
-      // 红方列标（从右到左，显示为从左到右依次递减）
-      const redFiles = ['九', '八', '七', '六', '五', '四', '三', '二', '一'];
-      // 黑方列标（从左到右依次递增）
-      const blackFiles = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-      const bottomFiles = s.orientation === 'white' ? redFiles : blackFiles;
-      const topFiles = s.orientation === 'white' ? blackFiles : redFiles;
+      const cnNs = ['一', '二', '三', '四', '五', '六', '七', '八', '九'];
+      const arNs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      // 红在下：中文在下、数字在上；黑在下：反之
+      const bottomSrc = s.orientation === 'white' ? cnNs : arNs;
+      const topSrc = s.orientation === 'white' ? arNs : cnNs;
+      // 下面倒序、上面正序
+      const bottomFiles = [...bottomSrc].reverse();
+      const topFiles = [...topSrc];
 
       const topEl = renderCoords(topFiles, 'files top', s.orientation === 'white' ? 'black' : 'white');
-      topEl.style.flexFlow = 'row';
+      topEl.style.flexDirection = 'row';
       container.appendChild(topEl);
 
-      const bottomEl = renderCoords(
-        bottomFiles,
-        'files bottom',
-        s.orientation === 'white' ? 'white' : 'black',
-      );
-      bottomEl.style.flexFlow = 'row';
+      const bottomEl = renderCoords(bottomFiles, 'files bottom', s.orientation === 'white' ? 'white' : 'black');
+      bottomEl.style.flexDirection = 'row';
       container.appendChild(bottomEl);
     }
   }
