@@ -80,17 +80,12 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
       const bottomFiles = [...bottomSrc].reverse();
       const topFiles = [...topSrc];
 
-      const topEl = renderCoords(topFiles, 'files top', s.orientation === 'white' ? 'black' : 'white');
-      topEl.style.flexDirection = 'row';
-      container.appendChild(topEl);
-
-      const bottomEl = renderCoords(
-        bottomFiles,
-        'files bottom',
-        s.orientation === 'white' ? 'white' : 'black',
+      container.appendChild(
+        renderCoords(topFiles, 'files top', s.orientation === 'white' ? 'black' : 'white'),
       );
-      bottomEl.style.flexDirection = 'row';
-      container.appendChild(bottomEl);
+      container.appendChild(
+        renderCoords(bottomFiles, 'files bottom', s.orientation === 'white' ? 'white' : 'black'),
+      );
     }
   }
 
