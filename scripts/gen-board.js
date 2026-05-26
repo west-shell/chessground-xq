@@ -150,87 +150,15 @@ const b64 = Buffer.from(svg, 'utf-8').toString('base64');
 const css = `/**
  * chessground.board.css — 中国象棋棋盘背景图
  *
- * 将 SVG 棋盘网格硬编码为 base64 data URI，
- * 用法类似 chessground.cburnett.css。
+ * 将 SVG 棋盘网格硬编码为 base64 data URI。
+ * 仅包含棋盘背景，交互样式见 chessground.base.css。
  *
  * 生成命令：node scripts/gen-board.js
  */
 
-.cg-wrap {
+cg-board {
   background-image: url('data:image/svg+xml;base64,${b64}');
-  background-size: 100% 100%; 
-  background-repeat: no-repeat;
-  background-position: center;
-  aspect-ratio: 9 / 10; 
-}
-
-/** Interactive board square colors */
-cg-board square.move-dest {
-  background: radial-gradient(rgba(20, 85, 30, 0.5) 22%, #208530 0, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0) 0);
-}
-
-cg-board square.premove-dest {
-  background: radial-gradient(rgba(20, 30, 85, 0.5) 22%, #203085 0, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0) 0);
-}
-
-cg-board square.oc.move-dest {
-  background: radial-gradient(transparent 0%, transparent 80%, rgba(20, 85, 0, 0.3) 80%);
-}
-
-cg-board square.oc.premove-dest {
-  background: radial-gradient(transparent 0%, transparent 80%, rgba(20, 30, 85, 0.2) 80%);
-}
-
-cg-board square.move-dest:hover,
-cg-board square.move-dest.hover {
-  background: rgba(20, 85, 30, 0.3);
-}
-
-cg-board square.premove-dest:hover,
-cg-board square.premove-dest.hover {
-  background: rgba(20, 30, 85, 0.2);
-}
-
-cg-board square.last-move-orig {
-  background: linear-gradient(rgba(155, 199, 0, 0.41), rgba(155, 199, 0, 0.8)) center / 30% 30% no-repeat;
-}
-cg-board square.last-move-dest {
-  background-color: rgba(20, 85, 30, 0.5);
-}
-
-cg-board square.selected {
-  background-color: rgba(20, 85, 30, 0.5);
-}
-
-cg-board square.check {
-  background: radial-gradient(ellipse at center,
-      rgba(255, 0, 0, 1) 0%,
-      rgba(231, 0, 0, 1) 25%,
-      rgba(169, 0, 0, 0) 89%,
-      rgba(158, 0, 0, 0) 100%);
-}
-
-cg-board square.current-premove {
-  background-color: rgba(20, 30, 85, 0.5);
-}
-
-/** Alternating colors in rank/file/square labels */
-.orientation-white .ranks :nth-child(odd),
-.orientation-white .files :nth-child(even),
-.orientation-black .ranks :nth-child(even),
-.orientation-black .files :nth-child(odd),
-coords.squares:nth-of-type(odd) :nth-child(even),
-coords.squares:nth-of-type(even) :nth-child(odd) {
-  color: rgba(72, 72, 72, 0.8);
-}
-
-.orientation-white .ranks :nth-child(even),
-.orientation-white .files :nth-child(odd),
-.orientation-black .ranks :nth-child(odd),
-.orientation-black .files :nth-child(even),
-coords.squares:nth-of-type(odd) :nth-child(odd),
-coords.squares:nth-of-type(even) :nth-child(even) {
-color: rgba(255, 255, 255, 0.8);
+  background-size: 100% 100%;
 }
 `;
 

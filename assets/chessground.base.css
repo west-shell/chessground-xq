@@ -151,23 +151,6 @@ piece.fading {
   font-size: 12px;
 }
 
-.cg-wrap coords.ranks {
-  left: 5px;
-  top: 0px;
-  flex-flow: column-reverse;
-  height: 100%;
-  width: 12px;
-}
-
-.cg-wrap coords.ranks.black {
-  flex-flow: column;
-}
-
-.cg-wrap coords.ranks.left {
-  left: -15px;
-  align-items: flex-end;
-}
-
 .cg-wrap coords.files {
   bottom: 1%;
   left: 0;
@@ -184,64 +167,68 @@ piece.fading {
   bottom: auto;
 }
 
-.cg-wrap coords.files.black {
-  flex-flow: row-reverse;
-}
-
 .cg-wrap coords coord {
   flex: 1 1 auto;
 }
 
-.cg-wrap coords.ranks coord {
-  transform: translateY(39%);
+/* Interactive board square colors */
+cg-board square.move-dest {
+  background: radial-gradient(rgba(20, 85, 30, 0.5) 22%, #208530 0, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0) 0);
 }
 
-.cg-wrap coords.squares {
-  bottom: 0;
-  left: 0;
-  text-transform: uppercase;
-  text-align: right;
-  flex-flow: column-reverse;
-  height: 100%;
-  width: 11.1111111111%;
+cg-board square.premove-dest {
+  background: radial-gradient(rgba(20, 30, 85, 0.5) 22%, #203085 0, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0) 0);
 }
 
-.cg-wrap coords.squares.black {
-  flex-flow: column;
+cg-board square.oc.move-dest {
+  background: radial-gradient(transparent 0%, transparent 80%, rgba(20, 85, 0, 0.3) 80%);
 }
 
-.cg-wrap coords.squares.left {
-  text-align: left;
+cg-board square.oc.premove-dest {
+  background: radial-gradient(transparent 0%, transparent 80%, rgba(20, 30, 85, 0.2) 80%);
 }
 
-.cg-wrap coords.squares coord {
-  padding: 6% 4%;
+cg-board square.move-dest:hover,
+cg-board square.move-dest.hover {
+  background: rgba(20, 85, 30, 0.3);
 }
 
-.cg-wrap coords.squares.rank2 {
-  transform: translateX(100%);
+cg-board square.premove-dest:hover,
+cg-board square.premove-dest.hover {
+  background: rgba(20, 30, 85, 0.2);
 }
 
-.cg-wrap coords.squares.rank3 {
-  transform: translateX(200%);
+cg-board square.last-move-orig {
+  background: linear-gradient(rgba(155, 199, 0, 0.41), rgba(155, 199, 0, 0.8)) center / 30% 30% no-repeat;
 }
 
-.cg-wrap coords.squares.rank4 {
-  transform: translateX(300%);
+cg-board square.last-move-dest {
+  background-color: rgba(20, 85, 30, 0.5);
 }
 
-.cg-wrap coords.squares.rank5 {
-  transform: translateX(400%);
+cg-board square.selected {
+  background-color: rgba(20, 85, 30, 0.5);
 }
 
-.cg-wrap coords.squares.rank6 {
-  transform: translateX(500%);
+cg-board square.check {
+  background: radial-gradient(ellipse at center,
+      rgba(255, 0, 0, 1) 0%,
+      rgba(231, 0, 0, 1) 25%,
+      rgba(169, 0, 0, 0) 89%,
+      rgba(158, 0, 0, 0) 100%);
 }
 
-.cg-wrap coords.squares.rank7 {
-  transform: translateX(600%);
+cg-board square.current-premove {
+  background-color: rgba(20, 30, 85, 0.5);
 }
 
-.cg-wrap coords.squares.rank8 {
-  transform: translateX(700%);
+/* Alternating colors in file coordinate labels */
+.orientation-white .files :nth-child(even),
+.orientation-black .files :nth-child(odd) {
+  color: rgba(72, 72, 72, 0.8);
+}
+
+.orientation-white .files :nth-child(odd),
+.orientation-black .files :nth-child(even) {
+  color: rgba(255, 255, 255, 0.8);
 }

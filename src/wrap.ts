@@ -1,6 +1,6 @@
 import { type HeadlessState } from './state.js';
 import { createDefs, createElement as createSVG, setAttributes } from './svg.js';
-import { type Color, colors, type Elements, files, ranks } from './types.js';
+import { type Color, colors, type Elements } from './types.js';
 import { createEl, opposite, setVisible } from './util.js';
 
 export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
@@ -13,7 +13,6 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
   //     svg.cg-custom-svgs
   //       g
   //     cg-auto-pieces
-  //     coords.ranks
   //     coords.files
   //     piece.ghost
 
@@ -54,39 +53,21 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
   }
 
   if (s.coordinates) {
-    if (s.coordinatesOnSquares) {
-      const orientClass = s.orientation === 'black' ? ' black' : '';
-      const ranksPositionClass = s.ranksPosition === 'left' ? ' left' : '';
-      files.forEach((f, i) =>
-        container.appendChild(
-          renderCoords(
-            ranks.map(r => {
-              const col = s.orientation === 'white' ? 8 - i : i;
-              const row = s.orientation === 'white' ? parseInt(r) : 9 - parseInt(r);
-              return `${col + 1}/${row + 1}`;
-            }),
-            'squares rank' + (i + 1) + orientClass + ranksPositionClass,
-            i % 2 === 0 ? 'black' : 'white',
-          ),
-        ),
-      );
-    } else {
-      const cnNs = ['一', '二', '三', '四', '五', '六', '七', '八', '九'];
-      const arNs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-      // 红在下：中文在下、数字在上；黑在下：反之
-      const bottomSrc = s.orientation === 'white' ? cnNs : arNs;
-      const topSrc = s.orientation === 'white' ? arNs : cnNs;
-      // 下面倒序、上面正序
-      const bottomFiles = [...bottomSrc].reverse();
-      const topFiles = [...topSrc];
+    const cnNs = ['一', '二', '三', '四', '五', '六', '七', '八', '九'];
+    const arNs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    // 红在下：中文在下、数字在上；黑在下：反之
+    const bottomSrc = s.orientation === 'white' ? cnNs : arNs;
+    const topSrc = s.orientation === 'white' ? arNs : cnNs;
+    // 下面倒序、上面正序
+    const bottomFiles = [...bottomSrc].reverse();
+    const topFiles = [...topSrc];
 
-      container.appendChild(
-        renderCoords(topFiles, 'files top', s.orientation === 'white' ? 'black' : 'white'),
-      );
-      container.appendChild(
-        renderCoords(bottomFiles, 'files bottom', s.orientation === 'white' ? 'white' : 'black'),
-      );
-    }
+    container.appendChild(
+      renderCoords(topFiles, 'files top', s.orientation === 'white' ? 'black' : 'white'),
+    );
+    container.appendChild(
+      renderCoords(bottomFiles, 'files bottom', s.orientation === 'white' ? 'white' : 'black'),
+    );
   }
 
   let ghost: HTMLElement | undefined;
