@@ -54,29 +54,42 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
   }
 
   if (s.coordinates) {
-    const orientClass = s.orientation === 'black' ? ' black' : '';
-    const ranksPositionClass = s.ranksPosition === 'left' ? ' left' : '';
-
     if (s.coordinatesOnSquares) {
-      const rankN: (i: number) => number = s.orientation === 'white' ? i => i + 1 : i => 10 - i;
+      const orientClass = s.orientation === 'black' ? ' black' : '';
+      const ranksPositionClass = s.ranksPosition === 'left' ? ' left' : '';
       files.forEach((f, i) =>
         container.appendChild(
           renderCoords(
-            ranks.map(r => f + r),
-            'squares rank' + rankN(i) + orientClass + ranksPositionClass,
+            ranks.map(r => {
+              const col = s.orientation === 'white' ? 8 - i : i;
+              const row = s.orientation === 'white' ? parseInt(r) : 9 - parseInt(r);
+              return `${col + 1}/${row + 1}`;
+            }),
+            'squares rank' + (i + 1) + orientClass + ranksPositionClass,
             i % 2 === 0 ? 'black' : 'white',
           ),
         ),
       );
     } else {
-      container.appendChild(
-        renderCoords(
-          ranks,
-          'ranks' + orientClass + ranksPositionClass,
-          (s.ranksPosition === 'right') === (s.orientation === 'white') ? 'white' : 'black',
-        ),
+      // 红方列标（从右到左，显示为从左到右依次递减）
+      const redFiles = ['九', '八', '七', '六', '五', '四', '三', '二', '一'];
+      // 黑方列标（从左到右依次递增）
+      const blackFiles = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+      const bottomFiles = s.orientation === 'white' ? redFiles : blackFiles;
+      const topFiles = s.orientation === 'white' ? blackFiles : redFiles;
+
+      const topEl = renderCoords(topFiles, 'files top', s.orientation === 'white' ? 'black' : 'white');
+      topEl.style.flexFlow = 'row';
+      container.appendChild(topEl);
+
+      const bottomEl = renderCoords(
+        bottomFiles,
+        'files bottom',
+        s.orientation === 'white' ? 'white' : 'black',
       );
-      container.appendChild(renderCoords(files, 'files' + orientClass, opposite(s.orientation)));
+      bottomEl.style.flexFlow = 'row';
+      container.appendChild(bottomEl);
     }
   }
 

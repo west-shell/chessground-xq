@@ -169,13 +169,19 @@ piece.fading {
 }
 
 .cg-wrap coords.files {
-  bottom: 0px;
+  bottom: 1%;
   left: 0;
   flex-flow: row;
+  align-items: center;
   width: 100%;
   height: 16px;
-  text-transform: uppercase;
   text-align: center;
+  line-height: 16px;
+}
+
+.cg-wrap coords.files.top {
+  top: 1%;
+  bottom: auto;
 }
 
 .cg-wrap coords.files.black {
