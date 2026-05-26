@@ -84,7 +84,11 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
       topEl.style.flexDirection = 'row';
       container.appendChild(topEl);
 
-      const bottomEl = renderCoords(bottomFiles, 'files bottom', s.orientation === 'white' ? 'white' : 'black');
+      const bottomEl = renderCoords(
+        bottomFiles,
+        'files bottom',
+        s.orientation === 'white' ? 'white' : 'black',
+      );
       bottomEl.style.flexDirection = 'row';
       container.appendChild(bottomEl);
     }
