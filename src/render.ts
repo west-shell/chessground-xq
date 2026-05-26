@@ -214,13 +214,11 @@ function posZIndex(pos: cg.Pos, asWhite: boolean): string {
 
 const pieceNameOf = (piece: cg.Piece): string => `${piece.color} ${piece.role}`;
 
-const normalizeLastMoveStandardRookCastle = (s: State, k: cg.Key): cg.Key => k;
-
 function computeSquareClasses(s: State): cg.SquareClasses {
   const squares: cg.SquareClasses = new Map();
   if (s.lastMove && s.highlight.lastMove)
     for (const [i, k] of s.lastMove.entries())
-      addSquare(squares, i === 1 ? normalizeLastMoveStandardRookCastle(s, k) : k, 'last-move');
+      addSquare(squares, k, i === 0 ? 'last-move-orig' : 'last-move-dest');
   if (s.check && s.highlight.check) addSquare(squares, s.check, 'check');
   if (s.selected) {
     addSquare(squares, s.selected, 'selected');

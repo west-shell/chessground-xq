@@ -47,7 +47,8 @@ cg-board square.move-dest {
   pointer-events: auto;
 }
 
-cg-board square.last-move {
+cg-board square.last-move-orig,
+cg-board square.last-move-dest {
   will-change: transform;
 }
 

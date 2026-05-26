@@ -191,8 +191,11 @@ cg-board square.premove-dest.hover {
   background: rgba(20, 30, 85, 0.2);
 }
 
-cg-board square.last-move {
-  background-color: rgba(155, 199, 0, 0.41);
+cg-board square.last-move-orig {
+  background: linear-gradient(rgba(155, 199, 0, 0.41), rgba(155, 199, 0, 0.8)) center / 30% 30% no-repeat;
+}
+cg-board square.last-move-dest {
+  background-color: rgba(20, 85, 30, 0.5);
 }
 
 cg-board square.selected {
